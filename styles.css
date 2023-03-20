@@ -1,0 +1,11 @@
+.external-link img.external-link-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.external-link div.external-link-wrapper {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+}
