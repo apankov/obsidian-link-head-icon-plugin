@@ -1,3 +1,7 @@
+.external-link {
+  word-break: break-all;
+}
+
 .external-link img.external-link-icon {
   width: 16px;
   height: 16px;
@@ -8,4 +12,6 @@
   width: 16px;
   height: 16px;
   background-size: cover;
+  vertical-align: text-bottom;
+  margin-right: 4px;
 }
