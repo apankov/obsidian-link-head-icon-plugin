@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-link-head-icon",
-	"name": "Link Head Icon",
-	"version": "0.0.1",
-	"minAppVersion": "1.0.0",
-	"description": "This Plugin shows little image icon ahead of external URL",
-	"author": "Andrey Pankov",
-	"authorUrl": "https://github.com/apankov",
-	"isDesktopOnly": false
+  "id": "obsidian-link-head-icon-plugin",
+  "name": "Link Head Icon",
+  "version": "0.0.2",
+  "minAppVersion": "1.0.0",
+  "description": "This Plugin shows little image icon ahead of external URL",
+  "author": "Andrey Pankov",
+  "authorUrl": "https://github.com/apankov",
+  "isDesktopOnly": false
 }

@@ -2,11 +2,12 @@ import { Plugin, MarkdownRenderChild } from 'obsidian';
 import { getAssetsPathResolver } from './util';
 
 const WEBSITES: Record<string, string> = {
-	'//docs.google.com/spreadsheets/': 'google-drive.png',
+	'//docs.google.com/spreadsheets/': 'spreadsheets.png',
 	'//docs.google.com/document/': 'google-drive.png',
 	'//drive.google.com/drive/': 'google-drive.png',
 	'youtube.com/watch': 'youtube.png',
 	'//twitter.com/': 'twitter.png',
+	'//gitlab.com/': 'twitter.png',
 };
 
 class LinkIcon extends MarkdownRenderChild {
