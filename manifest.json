@@ -1,7 +1,7 @@
 {
   "id": "obsidian-link-head-icon-plugin",
   "name": "Link Head Icon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "minAppVersion": "1.0.0",
   "description": "This Plugin shows little image icon ahead of external URL",
   "author": "Andrey Pankov",
