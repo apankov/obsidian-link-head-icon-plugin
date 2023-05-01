@@ -1,13 +1,9 @@
 .external-link {
   word-break: break-all;
+  background-position-y: 0px;
 }
 
-.external-link img.external-link-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.external-link div.external-link-wrapper {
+.external-link div.external-link-icon {
   display: inline-block;
   width: 16px;
   height: 16px;
