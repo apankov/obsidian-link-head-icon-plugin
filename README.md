@@ -1,4 +1,4 @@
-# Obsidian Link Head Icon
+# Obsidian 'Link Head Icon' Plugin
 
 This Plugin shows little image in reading mode ahead of external links to some common websites. Such a behaviour is highly inspired by how Asana became to refer to external documents.
 

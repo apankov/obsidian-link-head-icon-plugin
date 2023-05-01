@@ -1,5 +1,5 @@
 {
-  "name": "obsidian-link-head-icon-plugin",
+  "name": "link-head-icon",
   "version": "0.0.4",
   "description": "This is a simple plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
