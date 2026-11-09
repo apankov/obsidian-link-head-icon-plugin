@@ -6,19 +6,29 @@
 // it shrinks detailed icons (Habr's path drops from 16 KB to under 6 KB).
 //
 // Run `npm run icons` after changing the list below.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { optimize } from "svgo";
 import * as current from "simple-icons";
 // Icons removed from current simple-icons releases.
 import * as legacy from "simple-icons-legacy";
 
-/** Icon id → [simple-icons package, export name]. */
+/**
+ * Icons kept as files in scripts/icons/, each a single path on a 24×24
+ * viewBox: Fathom merged from fathom.video's logo.
+ */
+const file = (name, hex) => ({
+	hex,
+	svg: readFileSync(new URL(`icons/${name}`, import.meta.url), "utf8"),
+});
+
+/** Icon id → [simple-icons package, export name], or a file() entry. */
 const ICONS = {
 	"asana": [current, "siAsana"],
 	"chatgpt": [legacy, "siOpenai"],
 	"claude": [current, "siClaude"],
 	"clickup": [current, "siClickup"],
 	"facebook": [current, "siFacebook"],
+	"fathom": file("fathom.svg", "00BEFF"),
 	"github": [current, "siGithub"],
 	"gitlab": [current, "siGitlab"],
 	"google-docs": [current, "siGoogledocs"],
@@ -51,10 +61,10 @@ function simplify(svg) {
 	return paths[0][1];
 }
 
-const entries = Object.entries(ICONS).map(([id, [pkg, name]]) => {
-	const icon = pkg[name];
+const entries = Object.entries(ICONS).map(([id, entry]) => {
+	const icon = Array.isArray(entry) ? entry[0][entry[1]] : entry;
 	if (!icon) {
-		throw new Error(`simple-icons has no export ${name}`);
+		throw new Error(`simple-icons has no export ${entry[1]}`);
 	}
 	return `\t${JSON.stringify(id)}: { hex: ${JSON.stringify(icon.hex)}, path: ${JSON.stringify(simplify(icon.svg))} },`;
 });

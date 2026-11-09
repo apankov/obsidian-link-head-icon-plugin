@@ -36,6 +36,7 @@ const WEBSITES: readonly Website[] = [
 	{ domains: ['claude.ai'], icon: 'claude' },
 	{ domains: ['chatgpt.com', 'chat.openai.com'], icon: 'chatgpt' },
 	{ domains: ['habr.com'], icon: 'habr' },
+	{ domains: ['fathom.video'], icon: 'fathom' },
 	{ domains: ['medium.com'], icon: 'medium' },
 	{ domains: ['stackoverflow.com'], icon: 'stackoverflow' },
 	{ domains: ['wikipedia.org'], icon: 'wikipedia' },

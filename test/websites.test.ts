@@ -28,6 +28,8 @@ describe('findIcon', () => {
 		['https://chatgpt.com/c/abc', 'chatgpt'],
 		['https://chat.openai.com/c/abc', 'chatgpt'],
 		['https://habr.com/ru/articles/123/', 'habr'],
+		['https://fathom.video/calls/123', 'fathom'],
+		['https://fathom.video/share/abc', 'fathom'],
 		['https://medium.com/@someone/post', 'medium'],
 		['https://someone.medium.com/post', 'medium'],
 		['https://stackoverflow.com/questions/123', 'stackoverflow'],
