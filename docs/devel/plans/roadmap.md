@@ -24,7 +24,7 @@ Still without an icon (no source in any simple-icons release): Tactiq, Rutube.
 
 - [x] Settings tab: one toggle, declared for Obsidian 1.13+ settings search.
 - [x] Icons in Live Preview (CodeMirror extension), toggle in settings, on by default. Skips code, front matter and math; hidden while the cursor is in the link.
-- [ ] Owner tests Live Preview comfort in daily use before release.
+- [x] Owner tested Live Preview comfort in daily use.
 
 ## Community catalog
 
