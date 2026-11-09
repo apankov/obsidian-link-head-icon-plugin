@@ -62,7 +62,10 @@ function buildDecorations(view: EditorView): DecorationSet {
 			// While the cursor is in a link, Obsidian shows its Markdown source: no icon then.
 			const editing = state.selection.ranges.some((sel) => sel.from <= to && sel.to >= from);
 			if (icon && !editing && !isInsideNonLink(state, from)) {
-				builder.add(from, from, Decoration.widget({ widget: new IconWidget(icon), side: -1 }));
+				// side: 1 puts the icon after the link start. Obsidian measures the
+				// list/quote prefix up to that position to set the hanging indent;
+				// with side: -1 the icon would count as prefix and shift the line.
+				builder.add(from, from, Decoration.widget({ widget: new IconWidget(icon), side: 1 }));
 			}
 		}
 	}
