@@ -1,6 +1,6 @@
 # Rename the plugin to Link Logos
 
-Status: planned (2026-11-09).
+Status: done in 0.2.2 (2026-11-09), except the catalog entry, which still uses the old id.
 
 ## Goal
 
