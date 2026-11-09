@@ -1,21 +1,40 @@
-# Obsidian 'Link Head Icon' Plugin
+# Link Head Icon
 
-This Plugin shows little image in reading mode ahead of external links to some common websites. Such a behaviour is highly inspired by how Asana became to refer to external documents.
+An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front of external links, so you can tell a Google Sheet from a GitHub repo or a Slack thread at a glance. The idea comes from how Asana shows links to external documents.
 
-**Example**
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/example-dark.png">
+  <img alt="A note in reading view with site icons in front of links to Fathom, Google Docs, Sheets and Slides, GitHub, ClickUp, Asana, Miro, Slack, Teams, YouTube and X" src="docs/assets/example-light.png" width="720">
+</picture>
 
-![img.png](example.png)
+- Works for bare URLs and for titled links like `[budget](https://docs.google.com/spreadsheets/...)`.
+- Follows the theme: dark logos such as GitHub and X switch to the text color in dark mode.
+- Desktop and mobile.
+- No network requests: the icons are bundled into the plugin.
+- Reading view only for now. Live Preview support is planned.
 
-Supported sites: Google Docs, Sheets, Slides, Forms and Drive, YouTube, X, Twitter, GitHub, GitLab (including self-hosted `gitlab.*`), Facebook, Instagram, LinkedIn, Telegram, Asana, ClickUp, Miro, Slack, Microsoft Teams, Claude, ChatGPT, Fathom, Habr, Yandex, Medium, Stack Overflow, Wikipedia, npm.
+## Supported sites
+
+| Category | Sites |
+|---|---|
+| Google | Docs, Sheets, Slides, Forms, Drive |
+| Code | GitHub, GitLab (including self-hosted `gitlab.*`), npm, Stack Overflow |
+| Work | Asana, ClickUp, Miro, Slack, Microsoft Teams, Fathom |
+| AI | Claude, ChatGPT |
+| Video and social | YouTube, X, Twitter, Facebook, Instagram, LinkedIn, Telegram |
+| Reading | Wikipedia, Medium, Habr, Yandex |
+
+Missing a site you use? [Open an issue](https://github.com/apankov/obsidian-link-head-icon-plugin/issues).
+
+## Install
+
+From Obsidian: **Settings → Community plugins → Browse**, search for **Link Head Icon**, then **Install** and **Enable**. Or open the [plugin page](https://community.obsidian.md/plugins/link-head-icon).
+
+To try unreleased versions, add `apankov/obsidian-link-head-icon-plugin` in the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin.
+
+## Credits
 
 Icons come from [Simple Icons](https://simpleicons.org) (CC0), except Fathom and Yandex, which are made from the sites' own logos. Brand names and logos belong to their owners.
-
-## How to install
-
-1. Go to **Community Plugins** in your [Obsidian](https://www.obsidian.md) Settings and **disable** Safe Mode
-2. Click on **Browse** and search for „Link Head Icon“
-3. Click install
-4. Toggle the Plugin on in the **Community Plugins** Tab
 
 ## Development
 
@@ -31,7 +50,9 @@ npm test
 
 To try it in a vault, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload Obsidian.
 
-To add a site, add its simple-icons entry to `scripts/generate-icons.mjs`, run `npm run icons`, and add a rule to `src/websites.ts`.
+To add a site, add its icon to `scripts/generate-icons.mjs`, run `npm run icons`, and add a rule to `src/websites.ts`.
+
+Plans and open work: [roadmap](docs/devel/plans/roadmap.md).
 
 ### Releasing
 
@@ -40,9 +61,4 @@ npm version patch   # bumps package.json, manifest.json and versions.json, then 
 git push --follow-tags
 ```
 
-The tag triggers a workflow that builds the plugin and creates a draft GitHub release. Publish the draft to make it available to Obsidian.
-
-# TODO
-
-1. Verify the plugin on the mobile app.
-2. Show image icons in editing mode.
+The tag triggers a workflow that builds the plugin and creates a draft GitHub release. Publish the draft to make it available in Obsidian.
