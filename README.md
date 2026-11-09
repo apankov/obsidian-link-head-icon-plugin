@@ -6,9 +6,9 @@ This Plugin shows little image in reading mode ahead of external links to some c
 
 ![img.png](example.png)
 
-Supported sites: Google Docs, Sheets, Slides, Forms and Drive, YouTube, X, Twitter, GitHub, GitLab (including self-hosted `gitlab.*`), Facebook, Instagram, LinkedIn, Telegram, Asana, ClickUp, Miro, Slack, Microsoft Teams, Claude, ChatGPT, Habr, Medium, Stack Overflow, Wikipedia, npm.
+Supported sites: Google Docs, Sheets, Slides, Forms and Drive, YouTube, X, Twitter, GitHub, GitLab (including self-hosted `gitlab.*`), Facebook, Instagram, LinkedIn, Telegram, Asana, ClickUp, Miro, Slack, Microsoft Teams, Claude, ChatGPT, Fathom, Habr, Yandex, Medium, Stack Overflow, Wikipedia, npm.
 
-Icons come from [Simple Icons](https://simpleicons.org) (CC0). Brand names and logos belong to their owners.
+Icons come from [Simple Icons](https://simpleicons.org) (CC0), except Fathom and Yandex, which are made from the sites' own logos. Brand names and logos belong to their owners.
 
 ## How to install
 

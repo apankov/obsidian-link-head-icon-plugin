@@ -11,7 +11,14 @@ Local issue list. Check items off in the commit that closes them.
 - [x] Google Slides, Google Forms, and self-hosted GitLab (`gitlab.*` hosts).
 - [x] Sites found in the author's vault: ClickUp, Habr, Slack, Claude, ChatGPT, Miro, Medium, Instagram, Telegram, LinkedIn, Wikipedia, Stack Overflow, Microsoft Teams.
 
-Not covered by simple-icons, left out for now: fathom.video (simple-icons' "Fathom" is Fathom Analytics), Tactiq, Rutube, Yandex.
+## 0.2.1 — icons the vault scan turned up
+
+- [x] Fathom: simple-icons' "Fathom" is Fathom Analytics, so the icon is made from fathom.video's logo.
+- [x] Habr: the current simple-icons logo is an unreadable scribble at 16 px; use the compact one from simple-icons 3.
+- [x] Yandex: traced from the ya.ru favicon.
+- [x] Ignore `.serena/`.
+
+Still without an icon (no source in any simple-icons release): Tactiq, Rutube.
 
 ## 0.3.0 — settings and editing mode
 
