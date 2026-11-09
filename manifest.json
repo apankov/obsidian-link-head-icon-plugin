@@ -3,7 +3,7 @@
   "name": "Link Head Icon",
   "version": "0.0.5",
   "minAppVersion": "1.0.0",
-  "description": "This Plugin shows little image icon ahead of external URL",
+  "description": "Shows a site icon ahead of external links to common websites.",
   "author": "Andrey Pankov",
   "authorUrl": "https://github.com/apankov",
   "isDesktopOnly": false
