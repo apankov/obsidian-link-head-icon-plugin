@@ -1,17 +1,19 @@
 import { Plugin, MarkdownRenderChild } from 'obsidian';
-import { ICONS } from './icons';
+import { type BrandIcon, ICONS, isMonochrome } from './icons';
 import { findIcon } from './websites';
 
 class LinkIcon extends MarkdownRenderChild {
-	constructor(containerEl: HTMLElement, private readonly src: string) {
+	constructor(containerEl: HTMLElement, private readonly brand: BrandIcon) {
 		super(containerEl);
 	}
 
 	onload() {
-		const icon = createEl('img', {
-			cls: 'link-head-icon',
-			attr: { src: this.src, alt: '' },
+		const icon = createSvg('svg', {
+			cls: isMonochrome(this.brand.hex) ? ['link-head-icon', 'link-head-icon-mono'] : 'link-head-icon',
+			attr: { viewBox: '0 0 24 24', fill: `#${this.brand.hex}`, 'aria-hidden': 'true' },
 		});
+		icon.createSvg('path', { attr: { d: this.brand.path } });
+
 		this.containerEl.prepend(icon);
 		this.containerEl.addClass('link-head-icon-link');
 		this.register(() => {
@@ -26,10 +28,9 @@ export default class LinkHeadIconPlugin extends Plugin {
 		this.registerMarkdownPostProcessor((element, context) => {
 			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {
 				const icon = findIcon(link.getAttribute('href') ?? '');
-				const src = icon && ICONS[icon];
 
-				if (src) {
-					context.addChild(new LinkIcon(link, src));
+				if (icon) {
+					context.addChild(new LinkIcon(link, ICONS[icon]));
 				}
 			});
 		});

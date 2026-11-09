@@ -36,7 +36,6 @@ const context = await esbuild.context({
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
 	minify: prod,
-	loader: { ".png": "dataurl" },
 	outfile: "main.js",
 });
 

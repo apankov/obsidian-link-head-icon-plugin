@@ -3,22 +3,22 @@ import { findIcon } from '../src/websites';
 
 describe('findIcon', () => {
 	it.each([
-		['https://docs.google.com/spreadsheets/d/abc/edit', 'spreadsheets.png'],
-		['https://docs.google.com/document/d/abc/edit', 'google-docs.png'],
-		['https://drive.google.com/drive/folders/abc', 'google-drive.png'],
-		['https://drive.google.com/file/d/abc/view', 'google-drive.png'],
-		['https://www.youtube.com/watch?v=abc', 'youtube.png'],
-		['https://m.youtube.com/watch?v=abc', 'youtube.png'],
-		['https://youtu.be/abc', 'youtube.png'],
-		['https://twitter.com/someone', 'twitter.png'],
-		['https://x.com/someone', 'twitter.png'],
-		['https://gitlab.com/group/project', 'gitlab.png'],
-		['https://www.facebook.com/someone', 'facebook.png'],
-		['https://github.com/owner/repo', 'github-light.png'],
-		['https://app.asana.com/0/123/456', 'asana.png'],
-		['https://www.npmjs.com/package/obsidian', 'npmjs.png'],
-		['http://github.com/owner/repo', 'github-light.png'],
-		['https://GitHub.com/owner/repo', 'github-light.png'],
+		['https://docs.google.com/spreadsheets/d/abc/edit', 'google-sheets'],
+		['https://docs.google.com/document/d/abc/edit', 'google-docs'],
+		['https://drive.google.com/drive/folders/abc', 'google-drive'],
+		['https://drive.google.com/file/d/abc/view', 'google-drive'],
+		['https://www.youtube.com/watch?v=abc', 'youtube'],
+		['https://m.youtube.com/watch?v=abc', 'youtube'],
+		['https://youtu.be/abc', 'youtube'],
+		['https://twitter.com/someone', 'twitter'],
+		['https://x.com/someone', 'twitter'],
+		['https://gitlab.com/group/project', 'gitlab'],
+		['https://www.facebook.com/someone', 'facebook'],
+		['https://github.com/owner/repo', 'github'],
+		['https://app.asana.com/0/123/456', 'asana'],
+		['https://www.npmjs.com/package/obsidian', 'npm'],
+		['http://github.com/owner/repo', 'github'],
+		['https://GitHub.com/owner/repo', 'github'],
 	])('maps %s to %s', (url, icon) => {
 		expect(findIcon(url)).toBe(icon);
 	});

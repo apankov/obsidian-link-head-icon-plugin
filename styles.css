@@ -7,7 +7,11 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  object-fit: cover;
   vertical-align: text-bottom;
   margin-right: 4px;
+}
+
+/* Near-black brand icons follow the theme so they stay visible in dark mode. */
+.external-link .link-head-icon-mono {
+  fill: var(--text-normal);
 }

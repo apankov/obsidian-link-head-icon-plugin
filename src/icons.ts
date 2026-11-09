@@ -1,27 +1,53 @@
-import asana from '../assets/asana.png';
-import facebook from '../assets/facebook.png';
-import githubLight from '../assets/github-light.png';
-import gitlab from '../assets/gitlab.png';
-import googleDocs from '../assets/google-docs.png';
-import googleDrive from '../assets/google-drive.png';
-import npmjs from '../assets/npmjs.png';
-import spreadsheets from '../assets/spreadsheets.png';
-import twitter from '../assets/twitter.png';
-import youtube from '../assets/youtube.png';
+import {
+	siAsana,
+	siFacebook,
+	siGithub,
+	siGitlab,
+	siGoogledocs,
+	siGoogledrive,
+	siGooglesheets,
+	siNpm,
+	siYoutube,
+} from 'simple-icons';
+// Icons removed from current simple-icons releases.
+import { siTwitter } from 'simple-icons-legacy';
+
+/** The parts of a simple-icons entry the plugin uses. */
+export interface BrandIcon {
+	/** SVG path data for a 24×24 viewBox. */
+	readonly path: string;
+	/** Brand color as six hex digits, without '#'. */
+	readonly hex: string;
+}
 
 /**
- * Icon file name → data URL. Icons are bundled into main.js because
- * Obsidian installs only main.js, manifest.json and styles.css.
+ * Brand icons from simple-icons (CC0): one 24×24 SVG path and a brand color
+ * each. esbuild tree-shakes the package, so only these end up in main.js.
  */
-export const ICONS: Readonly<Record<string, string>> = {
-	'asana.png': asana,
-	'facebook.png': facebook,
-	'github-light.png': githubLight,
-	'gitlab.png': gitlab,
-	'google-docs.png': googleDocs,
-	'google-drive.png': googleDrive,
-	'npmjs.png': npmjs,
-	'spreadsheets.png': spreadsheets,
-	'twitter.png': twitter,
-	'youtube.png': youtube,
-};
+export const ICONS = {
+	'asana': siAsana,
+	'facebook': siFacebook,
+	'github': siGithub,
+	'gitlab': siGitlab,
+	'google-docs': siGoogledocs,
+	'google-drive': siGoogledrive,
+	'google-sheets': siGooglesheets,
+	'npm': siNpm,
+	'twitter': siTwitter,
+	'youtube': siYoutube,
+} satisfies Record<string, BrandIcon>;
+
+export type IconId = keyof typeof ICONS;
+
+/**
+ * True for near-black brand colors (GitHub, X, ...). Those icons are drawn in
+ * the theme's text color instead so they stay visible in dark mode.
+ */
+export function isMonochrome(hex: string): boolean {
+	const channel = (offset: number) => {
+		const c = parseInt(hex.slice(offset, offset + 2), 16) / 255;
+		return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+	};
+	const luminance = 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
+	return luminance < 0.05;
+}

@@ -1,9 +1,11 @@
+import type { IconId } from './icons';
+
 interface Website {
 	/** Domains that match, including any of their subdomains. */
 	readonly domains: readonly string[];
 	/** Optional path prefix the URL must start with. */
 	readonly path?: string;
-	readonly icon: string;
+	readonly icon: IconId;
 }
 
 /**
@@ -11,24 +13,24 @@ interface Website {
  * list more specific rules (with a path) before broader ones.
  */
 const WEBSITES: readonly Website[] = [
-	{ domains: ['docs.google.com'], path: '/spreadsheets/', icon: 'spreadsheets.png' },
-	{ domains: ['docs.google.com'], path: '/document/', icon: 'google-docs.png' },
-	{ domains: ['drive.google.com'], icon: 'google-drive.png' },
-	{ domains: ['youtube.com', 'youtu.be'], icon: 'youtube.png' },
-	{ domains: ['twitter.com', 'x.com'], icon: 'twitter.png' },
-	{ domains: ['gitlab.com'], icon: 'gitlab.png' },
-	{ domains: ['facebook.com'], icon: 'facebook.png' },
-	{ domains: ['github.com'], icon: 'github-light.png' },
-	{ domains: ['asana.com'], icon: 'asana.png' },
-	{ domains: ['npmjs.com'], icon: 'npmjs.png' },
+	{ domains: ['docs.google.com'], path: '/spreadsheets/', icon: 'google-sheets' },
+	{ domains: ['docs.google.com'], path: '/document/', icon: 'google-docs' },
+	{ domains: ['drive.google.com'], icon: 'google-drive' },
+	{ domains: ['youtube.com', 'youtu.be'], icon: 'youtube' },
+	{ domains: ['twitter.com', 'x.com'], icon: 'twitter' },
+	{ domains: ['gitlab.com'], icon: 'gitlab' },
+	{ domains: ['facebook.com'], icon: 'facebook' },
+	{ domains: ['github.com'], icon: 'github' },
+	{ domains: ['asana.com'], icon: 'asana' },
+	{ domains: ['npmjs.com'], icon: 'npm' },
 ];
 
 function matchesDomain(hostname: string, domain: string): boolean {
 	return hostname === domain || hostname.endsWith(`.${domain}`);
 }
 
-/** Returns the icon file for a link URL, or undefined if the site is unknown. */
-export function findIcon(href: string): string | undefined {
+/** Returns the icon for a link URL, or undefined if the site is unknown. */
+export function findIcon(href: string): IconId | undefined {
 	let url: URL;
 	try {
 		url = new URL(href);
