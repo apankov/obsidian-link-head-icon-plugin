@@ -9,21 +9,21 @@ class LinkIcon extends MarkdownRenderChild {
 
 	onload() {
 		const icon = createSvg('svg', {
-			cls: isMonochrome(this.brand.hex) ? ['link-head-icon', 'link-head-icon-mono'] : 'link-head-icon',
+			cls: isMonochrome(this.brand.hex) ? ['link-logos-icon', 'link-logos-mono'] : 'link-logos-icon',
 			attr: { viewBox: '0 0 24 24', fill: `#${this.brand.hex}`, 'aria-hidden': 'true' },
 		});
 		icon.createSvg('path', { attr: { d: this.brand.path } });
 
 		this.containerEl.prepend(icon);
-		this.containerEl.addClass('link-head-icon-link');
+		this.containerEl.addClass('link-logos-link');
 		this.register(() => {
 			icon.remove();
-			this.containerEl.removeClass('link-head-icon-link');
+			this.containerEl.removeClass('link-logos-link');
 		});
 	}
 }
 
-export default class LinkHeadIconPlugin extends Plugin {
+export default class LinkLogosPlugin extends Plugin {
 	onload() {
 		this.registerMarkdownPostProcessor((element, context) => {
 			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {

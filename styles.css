@@ -1,9 +1,9 @@
-.external-link.link-head-icon-link {
+.external-link.link-logos-link {
   word-break: break-all;
   background-position-y: 0px;
 }
 
-.external-link .link-head-icon {
+.external-link .link-logos-icon {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -12,6 +12,6 @@
 }
 
 /* Near-black brand icons follow the theme so they stay visible in dark mode. */
-.external-link .link-head-icon-mono {
+.external-link .link-logos-mono {
   fill: var(--text-normal);
 }
