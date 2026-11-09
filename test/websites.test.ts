@@ -11,7 +11,7 @@ describe('findIcon', () => {
 		['https://m.youtube.com/watch?v=abc', 'youtube'],
 		['https://youtu.be/abc', 'youtube'],
 		['https://twitter.com/someone', 'twitter'],
-		['https://x.com/someone', 'twitter'],
+		['https://x.com/someone', 'x'],
 		['https://gitlab.com/group/project', 'gitlab'],
 		['https://www.facebook.com/someone', 'facebook'],
 		['https://github.com/owner/repo', 'github'],

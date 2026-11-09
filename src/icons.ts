@@ -7,6 +7,7 @@ import {
 	siGoogledrive,
 	siGooglesheets,
 	siNpm,
+	siX,
 	siYoutube,
 } from 'simple-icons';
 // Icons removed from current simple-icons releases.
@@ -34,6 +35,7 @@ export const ICONS = {
 	'google-sheets': siGooglesheets,
 	'npm': siNpm,
 	'twitter': siTwitter,
+	'x': siX,
 	'youtube': siYoutube,
 } satisfies Record<string, BrandIcon>;
 
