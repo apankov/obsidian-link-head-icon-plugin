@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An Obsidian community plugin ("Link Head Icon", id `link-head-icon`). In reading mode it prepends a small site icon to external links that point at known websites (Google Docs/Sheets/Drive, YouTube, Twitter/X, GitHub, GitLab, Facebook, Asana, npm). Editing mode is not supported yet.
+An Obsidian community plugin ("Link Head Icon", id `link-head-icon`). In reading mode it prepends a small site icon to external links that point at known websites (the list lives in `src/websites.ts`). Editing mode is not supported yet. Planned work and the local issue list: `docs/devel/plans/roadmap.md`.
 
 ## Commands
 
@@ -14,6 +14,7 @@ Node.js 22.12+.
 - `npm run dev` — esbuild watch build.
 - `npm run lint` — ESLint with `eslint-plugin-obsidianmd` recommended rules. Run it from the repo root: it also validates `manifest.json` and `package.json`.
 - `npm test` — Vitest. Run one test with `npx vitest run -t '<name>'`.
+- `npm run icons` — regenerate `src/icons.generated.ts` from `scripts/generate-icons.mjs`.
 - The `rtk` hook rewrites `npx eslint` output and can garble it. Use `rtk proxy npx eslint .` to see the raw report.
 
 To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload.
@@ -21,9 +22,10 @@ To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` in
 ## Architecture
 
 - `src/websites.ts` — pure `findIcon(href)`. It parses the URL and walks an ordered rule list (domains + optional path prefix). A domain also matches its subdomains, and the first matching rule wins. This file has no Obsidian imports so Vitest can load it.
-- `src/icons.ts` — maps icon file names to imported PNGs. esbuild inlines them as data URLs (`loader: { ".png": "dataurl" }` in `esbuild.config.mjs`). They must stay bundled because Obsidian installs only `main.js`, `manifest.json` and `styles.css`, so nothing in `assets/` reaches users at runtime.
-- `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an `img.link-head-icon` and removes it on unload.
-- Adding a site = PNG in `assets/` + import in `src/icons.ts` + rule in `src/websites.ts` + test case in `test/websites.test.ts`.
+- Icons are SVG paths from simple-icons (CC0). `scripts/generate-icons.mjs` holds the icon list, pulls each entry from `simple-icons` or, for icons removed upstream (Twitter bird, Slack, LinkedIn, OpenAI, Teams), from `simple-icons-legacy` (an npm alias for simple-icons 9). It simplifies paths with svgo and writes `src/icons.generated.ts` (committed). Bundling simple-icons entries directly would ship their full SVG and metadata and double `main.js`.
+- `src/icons.ts` — `IconId`, and `isMonochrome`: near-black brand colors get the `link-head-icon-mono` class, which draws them in `--text-normal` so they stay visible in dark mode.
+- `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an inline `svg.link-head-icon` (built with `createSvg`, hence `minAppVersion` 1.1.0) and marks the link with `link-head-icon-link`. Both are removed on unload, and `styles.css` targets only marked links.
+- Adding a site = entry in `scripts/generate-icons.mjs` + `npm run icons` + rule in `src/websites.ts` + test case in `test/websites.test.ts`.
 
 ## Releasing
 

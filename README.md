@@ -6,7 +6,9 @@ This Plugin shows little image in reading mode ahead of external links to some c
 
 ![img.png](example.png)
 
-Supported sites: Google Docs, Google Sheets, Google Drive, YouTube, Twitter/X, GitHub, GitLab, Facebook, Asana, npm.
+Supported sites: Google Docs, Sheets, Slides, Forms and Drive, YouTube, X, Twitter, GitHub, GitLab (including self-hosted `gitlab.*`), Facebook, Instagram, LinkedIn, Telegram, Asana, ClickUp, Miro, Slack, Microsoft Teams, Claude, ChatGPT, Habr, Medium, Stack Overflow, Wikipedia, npm.
+
+Icons come from [Simple Icons](https://simpleicons.org) (CC0). Brand names and logos belong to their owners.
 
 ## How to install
 
@@ -29,7 +31,7 @@ npm test
 
 To try it in a vault, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload Obsidian.
 
-To add a site, put a PNG in `assets/`, import it in `src/icons.ts` and add a rule to `src/websites.ts`.
+To add a site, add its simple-icons entry to `scripts/generate-icons.mjs`, run `npm run icons`, and add a rule to `src/websites.ts`.
 
 ### Releasing
 
