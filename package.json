@@ -1,6 +1,6 @@
 {
   "name": "link-head-icon",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Obsidian plugin that shows a site icon ahead of external links",
   "main": "main.js",
   "private": true,

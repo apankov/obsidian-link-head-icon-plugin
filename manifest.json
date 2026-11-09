@@ -1,7 +1,7 @@
 {
   "id": "link-head-icon",
   "name": "Link Head Icon",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "minAppVersion": "1.0.0",
   "description": "Shows a site icon ahead of external links to common websites.",
   "author": "Andrey Pankov",
