@@ -2,10 +2,13 @@
 
 An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front of external links, so you can tell a Google Sheet from a GitHub repo or a Slack thread at a glance. The idea comes from how Asana shows links to external documents.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/example-dark.png">
-  <img alt="A note in reading view with site icons in front of links to Fathom, Google Docs, Sheets and Slides, GitHub, ClickUp, Asana, Miro, Slack, Teams, YouTube and X" src="docs/assets/example-light.png" width="720">
-</picture>
+![Light theme: a note in reading view with site icons in front of links to Fathom, Google Docs, Sheets and Slides, GitHub, ClickUp, Asana, Miro, Slack, Teams, YouTube and X](https://raw.githubusercontent.com/apankov/obsidian-link-logos/master/docs/assets/example-light.png)
+
+*Light theme*
+
+![Dark theme: the same note in dark mode, where dark logos such as GitHub and X switch to the text color](https://raw.githubusercontent.com/apankov/obsidian-link-logos/master/docs/assets/example-dark.png)
+
+*Dark theme*
 
 - Works for bare URLs and for titled links like `[budget](https://docs.google.com/spreadsheets/...)`.
 - Follows the theme: dark logos such as GitHub and X switch to the text color in dark mode.
