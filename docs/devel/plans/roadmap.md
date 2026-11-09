@@ -27,8 +27,8 @@ Still without an icon (no source in any simple-icons release): Tactiq, Rutube.
 
 ## Community catalog
 
-- [ ] Fix README install section (the plugin is not in the catalog yet).
-- [ ] Submit to `obsidianmd/obsidian-releases` after 0.3.0.
+- [x] Listed in the catalog: https://community.obsidian.md/plugins/link-head-icon
+- [x] README: install from the catalog, new screenshot.
 
 ## 0.4.0 — user-defined sites
 
