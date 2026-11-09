@@ -14,7 +14,8 @@ import * as legacy from "simple-icons-legacy";
 
 /**
  * Icons kept as files in scripts/icons/, each a single path on a 24×24
- * viewBox: Fathom merged from fathom.video's logo.
+ * viewBox: Habr from simple-icons 3 (newer releases ship a 16 KB scribble),
+ * Fathom merged from fathom.video's logo.
  */
 const file = (name, hex) => ({
 	hex,
@@ -36,7 +37,7 @@ const ICONS = {
 	"google-forms": [current, "siGoogleforms"],
 	"google-sheets": [current, "siGooglesheets"],
 	"google-slides": [current, "siGoogleslides"],
-	"habr": [current, "siHabr"],
+	"habr": file("habr.svg", "77A2B6"),
 	"instagram": [current, "siInstagram"],
 	"linkedin": [legacy, "siLinkedin"],
 	"medium": [current, "siMedium"],
