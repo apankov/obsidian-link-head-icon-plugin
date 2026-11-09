@@ -28,6 +28,10 @@ export default class LinkLogosPlugin extends Plugin {
 	// Registered once; its contents follow the Live Preview setting.
 	private readonly editorExtensions: Extension[] = [];
 
+	// Icons in rendered Markdown belong to the render's lifecycle, not the
+	// plugin's, so the plugin removes them itself when it is disabled.
+	private readonly renderedIcons = new Set<LinkIcon>();
+
 	async onload() {
 		await this.loadSettings();
 		this.addSettingTab(new LinkLogosSettingTab(this.app, this));
@@ -40,10 +44,19 @@ export default class LinkLogosPlugin extends Plugin {
 				const icon = findIcon(link.getAttribute('href') ?? '');
 
 				if (icon) {
-					context.addChild(new LinkIcon(link, ICONS[icon]));
+					const child = new LinkIcon(link, ICONS[icon]);
+					this.renderedIcons.add(child);
+					child.register(() => this.renderedIcons.delete(child));
+					context.addChild(child);
 				}
 			});
 		});
+	}
+
+	onunload() {
+		for (const child of [...this.renderedIcons]) {
+			child.unload();
+		}
 	}
 
 	async loadSettings() {
