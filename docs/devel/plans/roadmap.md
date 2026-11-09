@@ -1,0 +1,29 @@
+# Roadmap
+
+Local issue list. Check items off in the commit that closes them.
+
+## 0.2.0 — icons
+
+- [ ] Scope `styles.css` to links that get an icon (it currently changes word-break on every external link).
+- [ ] Switch from PNG to SVG brand icons from [simple-icons](https://simpleicons.org) (CC0), ~20 KB instead of ~84 KB.
+- [ ] Theme-aware icons: near-black brands (GitHub, X, Medium, Wikipedia, ...) use the theme text color so they stay visible in dark mode.
+- [ ] Separate icons for x.com (X logo) and twitter.com (bird).
+- [ ] Google Slides, Google Forms, and self-hosted GitLab (`gitlab.*` hosts).
+- [ ] Sites found in the author's vault: ClickUp, Habr, Slack, Claude, ChatGPT, Miro, Medium, Instagram, Telegram, LinkedIn, Wikipedia, Stack Overflow, Microsoft Teams.
+
+Not covered by simple-icons, left out for now: fathom.video (simple-icons' "Fathom" is Fathom Analytics), Tactiq, Rutube, Yandex.
+
+## 0.3.0 — settings and editing mode
+
+- [ ] Settings tab.
+- [ ] Icons in Live Preview (CodeMirror extension), toggle in settings, on by default.
+
+## Community catalog
+
+- [ ] Fix README install section (the plugin is not in the catalog yet).
+- [ ] Submit to `obsidianmd/obsidian-releases` after 0.3.0.
+
+## 0.4.0 — user-defined sites
+
+- [ ] User-defined domain → icon rules in settings.
+- [ ] Optional favicon fallback for unknown sites (off by default; network use must be disclosed).
