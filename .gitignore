@@ -16,3 +16,6 @@ main.js
 # obsidian
 data.json
 
+# Serena MCP local state
+.serena/
+
