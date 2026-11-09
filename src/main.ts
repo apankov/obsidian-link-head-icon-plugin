@@ -1,5 +1,6 @@
 import { Plugin, MarkdownRenderChild } from 'obsidian';
-import { type BrandIcon, ICONS, isMonochrome } from './icons';
+import { type BrandIcon, ICONS } from './icons';
+import { createIcon } from './render';
 import { findIcon } from './websites';
 
 class LinkIcon extends MarkdownRenderChild {
@@ -8,12 +9,7 @@ class LinkIcon extends MarkdownRenderChild {
 	}
 
 	onload() {
-		const icon = createSvg('svg', {
-			cls: isMonochrome(this.brand.hex) ? ['link-logos-icon', 'link-logos-mono'] : 'link-logos-icon',
-			attr: { viewBox: '0 0 24 24', fill: `#${this.brand.hex}`, 'aria-hidden': 'true' },
-		});
-		icon.createSvg('path', { attr: { d: this.brand.path } });
-
+		const icon = createIcon(this.brand);
 		this.containerEl.prepend(icon);
 		this.containerEl.addClass('link-logos-link');
 		this.register(() => {
