@@ -10,11 +10,19 @@ An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front o
 
 *Dark theme*
 
-- Works for bare URLs and for titled links like `[budget](https://docs.google.com/spreadsheets/...)`.
-- Follows the theme: dark logos such as GitHub and X switch to the text color in dark mode.
-- Desktop and mobile.
-- No network requests: the icons are bundled into the plugin.
-- Reading view only for now. Live Preview support is planned.
+## Why Link Logos
+
+- **Offline and private.** Icons ship inside the plugin. No requests to favicon services or the linked sites, not even the domain.
+- **Real logos, not favicons.** Crisp SVG at any zoom, identical on every device, no blank placeholders.
+- **Knows the page, not just the domain.** Google Docs, Sheets, Slides and Forms each get their own icon.
+- **Theme-aware.** Dark logos (GitHub, X, Medium) switch to the text color in dark mode.
+- **Any link.** Bare URLs and titled links like `[budget](https://docs.google.com/spreadsheets/...)`.
+- **Desktop and mobile.**
+- **Tiny.** About 12 KB, zero settings.
+
+Trade-off: only the sites listed below get an icon. For every website, use [Link Favicons](https://github.com/joethei/obsidian-link-favicon), which fetches favicons online.
+
+Reading view only for now. Live Preview is planned.
 
 ## Supported sites
 
