@@ -29,6 +29,19 @@ const WEBSITES: readonly Website[] = [
 	{ domains: ['github.com'], icon: 'github' },
 	{ domains: ['asana.com'], icon: 'asana' },
 	{ domains: ['npmjs.com'], icon: 'npm' },
+	{ domains: ['clickup.com'], icon: 'clickup' },
+	{ domains: ['slack.com'], icon: 'slack' },
+	{ domains: ['teams.microsoft.com'], icon: 'microsoft-teams' },
+	{ domains: ['miro.com'], icon: 'miro' },
+	{ domains: ['claude.ai'], icon: 'claude' },
+	{ domains: ['chatgpt.com', 'chat.openai.com'], icon: 'chatgpt' },
+	{ domains: ['habr.com'], icon: 'habr' },
+	{ domains: ['medium.com'], icon: 'medium' },
+	{ domains: ['stackoverflow.com'], icon: 'stackoverflow' },
+	{ domains: ['wikipedia.org'], icon: 'wikipedia' },
+	{ domains: ['linkedin.com'], icon: 'linkedin' },
+	{ domains: ['instagram.com'], icon: 'instagram' },
+	{ domains: ['t.me', 'telegram.me', 'telegram.org'], icon: 'telegram' },
 ];
 
 function matchesDomain(hostname: string, domain: string): boolean {

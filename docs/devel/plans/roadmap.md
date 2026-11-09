@@ -9,7 +9,7 @@ Local issue list. Check items off in the commit that closes them.
 - [x] Theme-aware icons: near-black brands (GitHub, X, Medium, Wikipedia, ...) use the theme text color so they stay visible in dark mode.
 - [x] Separate icons for x.com (X logo) and twitter.com (bird).
 - [x] Google Slides, Google Forms, and self-hosted GitLab (`gitlab.*` hosts).
-- [ ] Sites found in the author's vault: ClickUp, Habr, Slack, Claude, ChatGPT, Miro, Medium, Instagram, Telegram, LinkedIn, Wikipedia, Stack Overflow, Microsoft Teams.
+- [x] Sites found in the author's vault: ClickUp, Habr, Slack, Claude, ChatGPT, Miro, Medium, Instagram, Telegram, LinkedIn, Wikipedia, Stack Overflow, Microsoft Teams.
 
 Not covered by simple-icons, left out for now: fathom.video (simple-icons' "Fathom" is Fathom Analytics), Tactiq, Rutube, Yandex.
 

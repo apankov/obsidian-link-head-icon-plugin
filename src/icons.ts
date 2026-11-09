@@ -1,5 +1,7 @@
 import {
 	siAsana,
+	siClaude,
+	siClickup,
 	siFacebook,
 	siGithub,
 	siGitlab,
@@ -8,12 +10,19 @@ import {
 	siGoogleforms,
 	siGooglesheets,
 	siGoogleslides,
+	siHabr,
+	siInstagram,
+	siMedium,
+	siMiro,
 	siNpm,
+	siStackoverflow,
+	siTelegram,
+	siWikipedia,
 	siX,
 	siYoutube,
 } from 'simple-icons';
 // Icons removed from current simple-icons releases.
-import { siTwitter } from 'simple-icons-legacy';
+import { siLinkedin, siMicrosoftteams, siOpenai, siSlack, siTwitter } from 'simple-icons-legacy';
 
 /** The parts of a simple-icons entry the plugin uses. */
 export interface BrandIcon {
@@ -29,6 +38,9 @@ export interface BrandIcon {
  */
 export const ICONS = {
 	'asana': siAsana,
+	'chatgpt': siOpenai,
+	'claude': siClaude,
+	'clickup': siClickup,
 	'facebook': siFacebook,
 	'github': siGithub,
 	'gitlab': siGitlab,
@@ -37,9 +49,19 @@ export const ICONS = {
 	'google-forms': siGoogleforms,
 	'google-sheets': siGooglesheets,
 	'google-slides': siGoogleslides,
+	'habr': siHabr,
+	'instagram': siInstagram,
+	'linkedin': siLinkedin,
+	'medium': siMedium,
+	'microsoft-teams': siMicrosoftteams,
+	'miro': siMiro,
 	'npm': siNpm,
+	'slack': siSlack,
+	'stackoverflow': siStackoverflow,
+	'telegram': siTelegram,
 	'twitter': siTwitter,
 	'x': siX,
+	'wikipedia': siWikipedia,
 	'youtube': siYoutube,
 } satisfies Record<string, BrandIcon>;
 
