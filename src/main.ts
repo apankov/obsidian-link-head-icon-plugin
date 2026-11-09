@@ -13,7 +13,11 @@ class LinkIcon extends MarkdownRenderChild {
 			attr: { src: this.src, alt: '' },
 		});
 		this.containerEl.prepend(icon);
-		this.register(() => icon.remove());
+		this.containerEl.addClass('link-head-icon-link');
+		this.register(() => {
+			icon.remove();
+			this.containerEl.removeClass('link-head-icon-link');
+		});
 	}
 }
 

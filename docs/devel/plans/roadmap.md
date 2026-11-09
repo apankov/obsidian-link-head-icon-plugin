@@ -4,7 +4,7 @@ Local issue list. Check items off in the commit that closes them.
 
 ## 0.2.0 — icons
 
-- [ ] Scope `styles.css` to links that get an icon (it currently changes word-break on every external link).
+- [x] Scope `styles.css` to links that get an icon (it currently changes word-break on every external link).
 - [ ] Switch from PNG to SVG brand icons from [simple-icons](https://simpleicons.org) (CC0), ~20 KB instead of ~84 KB.
 - [ ] Theme-aware icons: near-black brands (GitHub, X, Medium, Wikipedia, ...) use the theme text color so they stay visible in dark mode.
 - [ ] Separate icons for x.com (X logo) and twitter.com (bird).
