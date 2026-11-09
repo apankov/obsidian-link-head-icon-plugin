@@ -41,7 +41,10 @@ Plan: [rename-to-link-logos](rename-to-link-logos.md).
 - [x] New catalog entry: https://community.obsidian.md/plugins/link-logos
 - [ ] Archive the old `link-head-icon` catalog entry (owner).
 
-## 0.4.0 — user-defined sites
+## On hold: wait for user feedback
+
+Not scheduled. Revisit once issues and catalog feedback show real demand.
 
 - [ ] User-defined domain → icon rules in settings.
 - [ ] Optional favicon fallback for unknown sites (off by default; network use must be disclosed).
+- [ ] Icons for app links (`zotero://`, `things://`, `obsidian://`), as External Links Icon and Link Flair do.
