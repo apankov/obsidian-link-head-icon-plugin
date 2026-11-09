@@ -8,7 +8,7 @@ Local issue list. Check items off in the commit that closes them.
 - [x] Switch from PNG to SVG brand icons from [simple-icons](https://simpleicons.org) (CC0), ~20 KB instead of ~84 KB.
 - [x] Theme-aware icons: near-black brands (GitHub, X, Medium, Wikipedia, ...) use the theme text color so they stay visible in dark mode.
 - [x] Separate icons for x.com (X logo) and twitter.com (bird).
-- [ ] Google Slides, Google Forms, and self-hosted GitLab (`gitlab.*` hosts).
+- [x] Google Slides, Google Forms, and self-hosted GitLab (`gitlab.*` hosts).
 - [ ] Sites found in the author's vault: ClickUp, Habr, Slack, Claude, ChatGPT, Miro, Medium, Instagram, Telegram, LinkedIn, Wikipedia, Stack Overflow, Microsoft Teams.
 
 Not covered by simple-icons, left out for now: fathom.video (simple-icons' "Fathom" is Fathom Analytics), Tactiq, Rutube, Yandex.
