@@ -4,26 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An Obsidian community plugin ("Link Head Icon", id `link-head-icon`). In reading mode it prepends a small site icon to external links that point at known websites (Google Docs/Sheets/Drive, YouTube, GitHub, GitLab, Twitter, Facebook, Asana, npm). Editing mode and mobile are not supported yet (see README TODO).
+An Obsidian community plugin ("Link Head Icon", id `link-head-icon`). In reading mode it prepends a small site icon to external links that point at known websites (Google Docs/Sheets/Drive, YouTube, Twitter/X, GitHub, GitLab, Facebook, Asana, npm). Editing mode is not supported yet.
 
 ## Commands
 
-- `npm install` — install dev dependencies (Rollup 2, TypeScript 4.2, `obsidian` 0.12 typings).
-- `npm run build` — production bundle via Rollup: `src/main.ts` → `./main.js` (CJS, `obsidian` external, inline sourcemap).
-- `npm run dev` — watch build via esbuild. `esbuild` is **not** in `devDependencies`; it must be installed globally or added first.
+Node.js 22.12+.
 
-There are no tests and no linter. To verify a change, build and load the plugin into a vault: copy `main.js`, `manifest.json`, `styles.css` and the `assets/` folder into `<vault>/.obsidian/plugins/link-head-icon/`, then reload Obsidian.
+- `npm run build` — `tsc --noEmit` type check, then the production esbuild bundle `src/main.ts` → `./main.js`.
+- `npm run dev` — esbuild watch build.
+- `npm run lint` — ESLint with `eslint-plugin-obsidianmd` recommended rules. Run it from the repo root: it also validates `manifest.json` and `package.json`.
+- `npm test` — Vitest. Run one test with `npx vitest run -t '<name>'`.
+- The `rtk` hook rewrites `npx eslint` output and can garble it. Use `rtk proxy npx eslint .` to see the raw report.
+
+To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload.
 
 ## Architecture
 
-- `src/main.ts` — the whole plugin. `LinkHeadIconPlugin.onload` registers a Markdown post-processor that scans rendered `a.external-link` elements. For each link it checks the `WEBSITES` map (substring pattern → icon filename) in insertion order; the first match wins, so put more specific patterns before broader ones. A `LinkIcon` (`MarkdownRenderChild`) then prepends a `div.external-link-icon` with the icon as an inline `background-image`.
-- Matching runs against the link's **visible text** (`innerText`), not its `href`. Links with custom titles (`[title](url)`) therefore get no icon.
-- `src/util.ts` — `getAssetsPathResolver` builds a vault resource URL for `<configDir>/plugins/<manifest.id>/assets/<file>`. Icons are loaded from the installed plugin folder at runtime, so they are not bundled into `main.js`.
-- `assets/*.png` — the icons. Adding a site = drop a PNG here and add an entry to `WEBSITES`.
-- `styles.css` — sizing/alignment for `.external-link-icon`.
+- `src/websites.ts` — pure `findIcon(href)`. It parses the URL and walks an ordered rule list (domains + optional path prefix). A domain also matches its subdomains, and the first matching rule wins. This file has no Obsidian imports so Vitest can load it.
+- `src/icons.ts` — maps icon file names to imported PNGs. esbuild inlines them as data URLs (`loader: { ".png": "dataurl" }` in `esbuild.config.mjs`). They must stay bundled because Obsidian installs only `main.js`, `manifest.json` and `styles.css`, so nothing in `assets/` reaches users at runtime.
+- `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an `img.link-head-icon` and removes it on unload.
+- Adding a site = PNG in `assets/` + import in `src/icons.ts` + rule in `src/websites.ts` + test case in `test/websites.test.ts`.
 
 ## Releasing
 
-- Bump `version` in both `manifest.json` and `package.json`, and add the version to `versions.json` (plugin version → minimum Obsidian version).
-- Pushing any git tag triggers `.github/workflows/release.yml`, which builds and attaches `main.js`, `manifest.json`, `styles.css` and a zip to a GitHub release. The workflow does **not** ship `assets/`, even though the plugin loads icons from there at runtime.
-- `main.js` is listed in `.gitignore` but is still tracked in git, so rebuilt output shows up as a modification.
+`npm version patch|minor|major` bumps `package.json`, then `version-bump.mjs` syncs `manifest.json` and `versions.json`, and npm tags the commit with no `v` prefix (`.npmrc`). Pushing the tag runs `.github/workflows/release.yml`. It checks that the tag equals the manifest version, runs lint, tests and the build, and creates a **draft** GitHub release with the three plugin files. `main.js` is build output and is not tracked in git.
