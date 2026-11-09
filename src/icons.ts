@@ -1,28 +1,6 @@
-import {
-	siAsana,
-	siClaude,
-	siClickup,
-	siFacebook,
-	siGithub,
-	siGitlab,
-	siGoogledocs,
-	siGoogledrive,
-	siGoogleforms,
-	siGooglesheets,
-	siGoogleslides,
-	siHabr,
-	siInstagram,
-	siMedium,
-	siMiro,
-	siNpm,
-	siStackoverflow,
-	siTelegram,
-	siWikipedia,
-	siX,
-	siYoutube,
-} from 'simple-icons';
-// Icons removed from current simple-icons releases.
-import { siLinkedin, siMicrosoftteams, siOpenai, siSlack, siTwitter } from 'simple-icons-legacy';
+import { ICONS } from './icons.generated';
+
+export { ICONS };
 
 /** The parts of a simple-icons entry the plugin uses. */
 export interface BrandIcon {
@@ -32,38 +10,8 @@ export interface BrandIcon {
 	readonly hex: string;
 }
 
-/**
- * Brand icons from simple-icons (CC0): one 24×24 SVG path and a brand color
- * each. esbuild tree-shakes the package, so only these end up in main.js.
- */
-export const ICONS = {
-	'asana': siAsana,
-	'chatgpt': siOpenai,
-	'claude': siClaude,
-	'clickup': siClickup,
-	'facebook': siFacebook,
-	'github': siGithub,
-	'gitlab': siGitlab,
-	'google-docs': siGoogledocs,
-	'google-drive': siGoogledrive,
-	'google-forms': siGoogleforms,
-	'google-sheets': siGooglesheets,
-	'google-slides': siGoogleslides,
-	'habr': siHabr,
-	'instagram': siInstagram,
-	'linkedin': siLinkedin,
-	'medium': siMedium,
-	'microsoft-teams': siMicrosoftteams,
-	'miro': siMiro,
-	'npm': siNpm,
-	'slack': siSlack,
-	'stackoverflow': siStackoverflow,
-	'telegram': siTelegram,
-	'twitter': siTwitter,
-	'x': siX,
-	'wikipedia': siWikipedia,
-	'youtube': siYoutube,
-} satisfies Record<string, BrandIcon>;
+// Fails to compile if the generated data stops matching BrandIcon.
+ICONS satisfies Record<string, BrandIcon>;
 
 export type IconId = keyof typeof ICONS;
 
