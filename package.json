@@ -10,7 +10,8 @@
   },
   "scripts": {
     "dev": "node esbuild.config.mjs",
-    "build": "tsc --noEmit && node esbuild.config.mjs production"
+    "build": "tsc --noEmit && node esbuild.config.mjs production",
+    "lint": "eslint ."
   },
   "keywords": [
     "obsidian",
@@ -21,8 +22,11 @@
   "devDependencies": {
     "@types/node": "^24.19.2",
     "esbuild": "^0.28.2",
+    "eslint": "^10.14.0",
+    "eslint-plugin-obsidianmd": "^0.5.1",
     "obsidian": "^1.14.4",
     "tslib": "^2.9.1",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1"
   }
 }
