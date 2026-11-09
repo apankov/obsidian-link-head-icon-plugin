@@ -15,7 +15,7 @@ import * as legacy from "simple-icons-legacy";
 /**
  * Icons kept as files in scripts/icons/, each a single path on a 24×24
  * viewBox: Habr from simple-icons 3 (newer releases ship a 16 KB scribble),
- * Fathom merged from fathom.video's logo.
+ * Fathom merged from fathom.video's logo, Yandex traced from ya.ru's favicon.
  */
 const file = (name, hex) => ({
 	hex,
@@ -50,6 +50,7 @@ const ICONS = {
 	"twitter": [legacy, "siTwitter"],
 	"wikipedia": [current, "siWikipedia"],
 	"x": [current, "siX"],
+	"yandex": file("yandex.svg", "FC3F1D"),
 	"youtube": [current, "siYoutube"],
 };
 

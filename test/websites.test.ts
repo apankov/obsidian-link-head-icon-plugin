@@ -30,6 +30,8 @@ describe('findIcon', () => {
 		['https://habr.com/ru/articles/123/', 'habr'],
 		['https://fathom.video/calls/123', 'fathom'],
 		['https://fathom.video/share/abc', 'fathom'],
+		['https://yandex.by/maps/', 'yandex'],
+		['https://ya.ru/', 'yandex'],
 		['https://medium.com/@someone/post', 'medium'],
 		['https://someone.medium.com/post', 'medium'],
 		['https://stackoverflow.com/questions/123', 'stackoverflow'],
