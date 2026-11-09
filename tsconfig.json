@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "inlineSourceMap": true,
-    "inlineSources": true,
     "module": "ESNext",
-    "target": "es6",
-    "allowJs": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
+    "target": "ES2018",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "isolatedModules": true,
     "importHelpers": true,
-    "lib": [
-      "dom",
-      "es5",
-      "scripthost",
-      "es2015"
-    ]
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2018"],
+    "types": ["node"]
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }

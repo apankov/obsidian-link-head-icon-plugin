@@ -48,9 +48,8 @@ export default class LinkHeadIconPlugin extends Plugin {
 				const link = links.item(index) as HTMLElement;
 				const text = link.innerText.trim();
 
-				for (const pattern in WEBSITES) {
+				for (const [pattern, website] of Object.entries(WEBSITES)) {
 					if (text.includes(pattern)) {
-						const website = WEBSITES[pattern];
 						context.addChild(new LinkIcon(link, resolver, website));
 						break;
 					}
