@@ -1,5 +1,6 @@
 import { Plugin, MarkdownRenderChild } from 'obsidian';
 import { type BrandIcon, ICONS } from './icons';
+import { livePreviewIcons } from './live-preview';
 import { createIcon } from './render';
 import { findIcon } from './websites';
 
@@ -21,6 +22,8 @@ class LinkIcon extends MarkdownRenderChild {
 
 export default class LinkLogosPlugin extends Plugin {
 	onload() {
+		this.registerEditorExtension(livePreviewIcons);
+
 		this.registerMarkdownPostProcessor((element, context) => {
 			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {
 				const icon = findIcon(link.getAttribute('href') ?? '');

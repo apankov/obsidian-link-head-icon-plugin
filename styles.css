@@ -3,7 +3,7 @@
   background-position-y: 0px;
 }
 
-.external-link .link-logos-icon {
+.link-logos-icon {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -12,6 +12,6 @@
 }
 
 /* Near-black brand icons follow the theme so they stay visible in dark mode. */
-.external-link .link-logos-mono {
+.link-logos-mono {
   fill: var(--text-normal);
 }
