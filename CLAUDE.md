@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An Obsidian community plugin ("Link Logos", id `link-logos`). In reading mode it prepends a small site icon to external links that point at known websites (the list lives in `src/websites.ts`). Editing mode is not supported yet. Planned work and the local issue list: `docs/devel/plans/roadmap.md`.
+An Obsidian community plugin ("Link Logos", id `link-logos`). It prepends a small site icon to external links that point at known websites (the list lives in `src/websites.ts`), in reading view and in Live Preview. Planned work and the local issue list: `docs/devel/plans/roadmap.md`.
 
 ## Commands
 
@@ -25,6 +25,9 @@ To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` in
 - Icons are SVG paths from simple-icons (CC0). `scripts/generate-icons.mjs` holds the icon list, pulls each entry from `simple-icons` or, for icons removed upstream (Twitter bird, Slack, LinkedIn, OpenAI, Teams), from `simple-icons-legacy` (an npm alias for simple-icons 9). Icons with no usable simple-icons version (Fathom, Habr, Yandex) live as single-path 24×24 SVGs in `scripts/icons/`. The generator needs exactly one `<path>` per icon, and holes must have the opposite winding direction because the renderer uses the default nonzero fill rule. It simplifies paths with svgo and writes `src/icons.generated.ts` (committed). Bundling simple-icons entries directly would ship their full SVG and metadata and double `main.js`.
 - `src/icons.ts` — `IconId`, and `isMonochrome`: near-black brand colors get the `link-logos-mono` class, which draws them in `--text-normal` so they stay visible in dark mode.
 - `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an inline `svg.link-logos-icon` (built with `createSvg`, hence `minAppVersion` 1.1.0) and marks the link with `link-logos-link`. Both are removed on unload, and `styles.css` targets only marked links.
+- `src/live-preview.ts` — CodeMirror view plugin for Live Preview. `src/links.ts` (pure, tested) finds `[text](url)` and bare URLs in the visible text; the plugin adds an icon widget at each link start, skipping syntax nodes whose names match code/frontmatter/math/comment and links the cursor is in. CodeMirror packages are devDependencies for types only; Obsidian provides them at runtime (esbuild externals).
+- `src/settings.ts` — one toggle, `livePreview`. `main.ts` registers a mutable extension array once and calls `workspace.updateOptions()` when the setting changes. The tab implements both `getSettingDefinitions()` (Obsidian 1.13+, settings search) and `display()` (older versions); the obsidianmd lint config forbids disabling its rules.
+- `src/render.ts` — `createIcon()`, shared by both views.
 - Adding a site = entry in `scripts/generate-icons.mjs` + `npm run icons` + rule in `src/websites.ts` + test case in `test/websites.test.ts`.
 
 ## Releasing
