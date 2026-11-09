@@ -17,9 +17,10 @@ An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front o
 - **Knows the page, not just the domain.** Google Docs, Sheets, Slides and Forms each get their own icon.
 - **Theme-aware.** Dark logos (GitHub, X, Medium) switch to the text color in dark mode.
 - **Any link.** Bare URLs and titled links like `[budget](https://docs.google.com/spreadsheets/...)`.
-- **Reading view and Live Preview.** In the editor the icon steps aside while your cursor is in the link. One toggle turns editor icons off.
+- **Reading view and Live Preview.** In the editor the icon steps aside while your cursor is in the link.
 - **Desktop and mobile.**
-- **Tiny.** About 15 KB, works out of the box.
+- **Minimal settings.** Works out of the box. The only setting turns editor icons off.
+- **Tiny.** About 15 KB.
 
 Trade-off: only the sites listed below get an icon. For every website, use [Link Favicons](https://github.com/joethei/obsidian-link-favicon), which fetches favicons online.
 
