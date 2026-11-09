@@ -3,11 +3,11 @@
   background-position-y: 0px;
 }
 
-.external-link div.external-link-icon {
+.external-link .link-head-icon {
   display: inline-block;
   width: 16px;
   height: 16px;
-  background-size: cover;
+  object-fit: cover;
   vertical-align: text-bottom;
   margin-right: 4px;
 }

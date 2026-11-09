@@ -1,43 +1,33 @@
 import { Plugin, MarkdownRenderChild } from 'obsidian';
-import { getAssetsPathResolver } from './util';
+import { ICONS } from './icons';
 import { findIcon } from './websites';
 
 class LinkIcon extends MarkdownRenderChild {
-	website: string;
-	resolver: (i: string) => string;
-
-	constructor(containerEl: HTMLElement, resolver: (i: string) => string, website: string) {
+	constructor(containerEl: HTMLElement, private readonly src: string) {
 		super(containerEl);
-
-		this.website = website;
-		this.resolver = resolver;
 	}
 
 	onload() {
-		const icon = this.containerEl.createEl('div', { attr: {
-			class: 'external-link-icon',
-			style: 'background-image: url("'+this.resolver(this.website)+'");',
-		}});
-
+		const icon = createEl('img', {
+			cls: 'link-head-icon',
+			attr: { src: this.src, alt: '' },
+		});
 		this.containerEl.prepend(icon);
+		this.register(() => icon.remove());
 	}
 }
 
 export default class LinkHeadIconPlugin extends Plugin {
-	async onload() {
+	onload() {
 		this.registerMarkdownPostProcessor((element, context) => {
-			const links = element.querySelectorAll("a.external-link");
+			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {
+				const icon = findIcon(link.innerText.trim());
+				const src = icon && ICONS[icon];
 
-			const resolver = getAssetsPathResolver(this, 'assets');
-
-			for (let index = 0; index < links.length; index++) {
-				const link = links.item(index) as HTMLElement;
-				const website = findIcon(link.innerText.trim());
-
-				if (website) {
-					context.addChild(new LinkIcon(link, resolver, website));
+				if (src) {
+					context.addChild(new LinkIcon(link, src));
 				}
-			}
+			});
 		});
 	}
 }
