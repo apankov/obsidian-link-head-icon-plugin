@@ -1,20 +1,6 @@
 import { Plugin, MarkdownRenderChild } from 'obsidian';
 import { getAssetsPathResolver } from './util';
-
-const WEBSITES: Record<string, string> = {
-	'//docs.google.com/spreadsheets/': 'spreadsheets.png',
-	'//docs.google.com/document/': 'google-docs.png',
-	'//drive.google.com/drive/': 'google-drive.png',
-	'youtube.com/watch': 'youtube.png',
-	'//www.youtube.com/': 'youtube.png',
-	'//youtu.be/': 'youtube.png',
-	'//twitter.com/': 'twitter.png',
-	'//gitlab.com/': 'gitlab.png',
-	'//www.facebook.com/': 'facebook.png',
-	'//github.com/': 'github-light.png',
-	'asana.com/': 'asana.png',
-	'//www.npmjs.com/': 'npmjs.png',
-};
+import { findIcon } from './websites';
 
 class LinkIcon extends MarkdownRenderChild {
 	website: string;
@@ -46,13 +32,10 @@ export default class LinkHeadIconPlugin extends Plugin {
 
 			for (let index = 0; index < links.length; index++) {
 				const link = links.item(index) as HTMLElement;
-				const text = link.innerText.trim();
+				const website = findIcon(link.innerText.trim());
 
-				for (const [pattern, website] of Object.entries(WEBSITES)) {
-					if (text.includes(pattern)) {
-						context.addChild(new LinkIcon(link, resolver, website));
-						break;
-					}
+				if (website) {
+					context.addChild(new LinkIcon(link, resolver, website));
 				}
 			}
 		});
