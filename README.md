@@ -1,4 +1,4 @@
-# Link Head Icon
+# Link Logos
 
 An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front of external links, so you can tell a Google Sheet from a GitHub repo or a Slack thread at a glance. The idea comes from how Asana shows links to external documents.
 
@@ -27,13 +27,13 @@ An [Obsidian](https://obsidian.md) plugin that puts a small site icon in front o
 | Video and social | YouTube, X, Twitter, Facebook, Instagram, LinkedIn, Telegram |
 | Reading | Wikipedia, Medium, Habr, Yandex |
 
-Missing a site you use? [Open an issue](https://github.com/apankov/obsidian-link-head-icon-plugin/issues).
+Missing a site you use? [Open an issue](https://github.com/apankov/obsidian-link-logos/issues).
 
 ## Install
 
-From Obsidian: **Settings → Community plugins → Browse**, search for **Link Head Icon**, then **Install** and **Enable**. Or open the [plugin page](https://community.obsidian.md/plugins/link-head-icon).
+From Obsidian: **Settings → Community plugins → Browse**, search for **Link Logos**, then **Install** and **Enable**.
 
-To try unreleased versions, add `apankov/obsidian-link-head-icon-plugin` in the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin.
+To try unreleased versions, add `apankov/obsidian-link-logos` in the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin.
 
 ## Credits
 
@@ -51,7 +51,7 @@ npm run lint
 npm test
 ```
 
-To try it in a vault, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload Obsidian.
+To try it in a vault, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-logos/` and reload Obsidian.
 
 To add a site, add its icon to `scripts/generate-icons.mjs`, run `npm run icons`, and add a rule to `src/websites.ts`.
 

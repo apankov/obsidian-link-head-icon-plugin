@@ -30,6 +30,15 @@ Still without an icon (no source in any simple-icons release): Tactiq, Rutube.
 - [x] Listed in the catalog: https://community.obsidian.md/plugins/link-head-icon
 - [x] README: install from the catalog, new screenshot.
 
+## Rename to Link Logos
+
+Plan: [rename-to-link-logos](rename-to-link-logos.md).
+
+- [x] Plugin id `link-logos`, display name "Link Logos", npm package and CSS classes renamed.
+- [x] GitHub repository renamed to `apankov/obsidian-link-logos`.
+- [x] README screenshots use absolute image URLs so they render on the catalog page.
+- [ ] Catalog entry follows the new id and name.
+
 ## 0.4.0 — user-defined sites
 
 - [ ] User-defined domain → icon rules in settings.

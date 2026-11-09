@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An Obsidian community plugin ("Link Head Icon", id `link-head-icon`). In reading mode it prepends a small site icon to external links that point at known websites (the list lives in `src/websites.ts`). Editing mode is not supported yet. Planned work and the local issue list: `docs/devel/plans/roadmap.md`.
+An Obsidian community plugin ("Link Logos", id `link-logos`). In reading mode it prepends a small site icon to external links that point at known websites (the list lives in `src/websites.ts`). Editing mode is not supported yet. Planned work and the local issue list: `docs/devel/plans/roadmap.md`.
 
 ## Commands
 
@@ -17,14 +17,14 @@ Node.js 22.12+.
 - `npm run icons` — regenerate `src/icons.generated.ts` from `scripts/generate-icons.mjs`.
 - The `rtk` hook rewrites `npx eslint` output and can garble it. Use `rtk proxy npx eslint .` to see the raw report.
 
-To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-head-icon/` and reload.
+To try a change in Obsidian, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/link-logos/` and reload.
 
 ## Architecture
 
 - `src/websites.ts` — pure `findIcon(href)`. It parses the URL and walks an ordered rule list (domains + optional path prefix). A domain also matches its subdomains, and the first matching rule wins. This file has no Obsidian imports so Vitest can load it.
 - Icons are SVG paths from simple-icons (CC0). `scripts/generate-icons.mjs` holds the icon list, pulls each entry from `simple-icons` or, for icons removed upstream (Twitter bird, Slack, LinkedIn, OpenAI, Teams), from `simple-icons-legacy` (an npm alias for simple-icons 9). Icons with no usable simple-icons version (Fathom, Habr, Yandex) live as single-path 24×24 SVGs in `scripts/icons/`. The generator needs exactly one `<path>` per icon, and holes must have the opposite winding direction because the renderer uses the default nonzero fill rule. It simplifies paths with svgo and writes `src/icons.generated.ts` (committed). Bundling simple-icons entries directly would ship their full SVG and metadata and double `main.js`.
-- `src/icons.ts` — `IconId`, and `isMonochrome`: near-black brand colors get the `link-head-icon-mono` class, which draws them in `--text-normal` so they stay visible in dark mode.
-- `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an inline `svg.link-head-icon` (built with `createSvg`, hence `minAppVersion` 1.1.0) and marks the link with `link-head-icon-link`. Both are removed on unload, and `styles.css` targets only marked links.
+- `src/icons.ts` — `IconId`, and `isMonochrome`: near-black brand colors get the `link-logos-mono` class, which draws them in `--text-normal` so they stay visible in dark mode.
+- `src/main.ts` — a Markdown post-processor finds `a.external-link`, calls `findIcon` on the `href`, and attaches a `MarkdownRenderChild` that prepends an inline `svg.link-logos-icon` (built with `createSvg`, hence `minAppVersion` 1.1.0) and marks the link with `link-logos-link`. Both are removed on unload, and `styles.css` targets only marked links.
 - Adding a site = entry in `scripts/generate-icons.mjs` + `npm run icons` + rule in `src/websites.ts` + test case in `test/websites.test.ts`.
 
 ## Releasing
