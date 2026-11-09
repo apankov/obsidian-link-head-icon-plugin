@@ -1,5 +1,5 @@
 {
-  "name": "link-head-icon",
+  "name": "link-logos",
   "version": "0.2.1",
   "description": "Obsidian plugin that shows a site icon ahead of external links",
   "main": "main.js",
