@@ -1,36 +1,19 @@
-import { Plugin, MarkdownRenderChild } from 'obsidian';
+import { MarkdownView, Plugin } from 'obsidian';
 import type { Extension } from '@codemirror/state';
-import { type BrandIcon, ICONS } from './icons';
+import { ICONS } from './icons';
 import { livePreviewIcons } from './live-preview';
 import { createIcon } from './render';
 import { DEFAULT_SETTINGS, type LinkLogosSettings, LinkLogosSettingTab } from './settings';
 import { findIcon } from './websites';
 
-class LinkIcon extends MarkdownRenderChild {
-	constructor(containerEl: HTMLElement, private readonly brand: BrandIcon) {
-		super(containerEl);
-	}
-
-	onload() {
-		const icon = createIcon(this.brand);
-		this.containerEl.prepend(icon);
-		this.containerEl.addClass('link-logos-link');
-		this.register(() => {
-			icon.remove();
-			this.containerEl.removeClass('link-logos-link');
-		});
-	}
-}
+const LINK_CLASS = 'link-logos-link';
+const ICON_CLASS = 'link-logos-icon';
 
 export default class LinkLogosPlugin extends Plugin {
 	settings: LinkLogosSettings = { ...DEFAULT_SETTINGS };
 
 	// Registered once; its contents follow the Live Preview setting.
 	private readonly editorExtensions: Extension[] = [];
-
-	// Icons in rendered Markdown belong to the render's lifecycle, not the
-	// plugin's, so the plugin removes them itself when it is disabled.
-	private readonly renderedIcons = new Set<LinkIcon>();
 
 	async onload() {
 		await this.loadSettings();
@@ -39,23 +22,31 @@ export default class LinkLogosPlugin extends Plugin {
 		this.registerEditorExtension(this.editorExtensions);
 		this.applyEditorSetting();
 
-		this.registerMarkdownPostProcessor((element, context) => {
+		// Icons stay in the rendered HTML for as long as it exists: Obsidian
+		// caches rendered blocks (callouts, tables in Live Preview) and reuses
+		// them without running post-processors again.
+		this.registerMarkdownPostProcessor((element) => {
 			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {
 				const icon = findIcon(link.getAttribute('href') ?? '');
-
-				if (icon) {
-					const child = new LinkIcon(link, ICONS[icon]);
-					this.renderedIcons.add(child);
-					child.register(() => this.renderedIcons.delete(child));
-					context.addChild(child);
+				if (icon && !link.hasClass(LINK_CLASS)) {
+					link.prepend(createIcon(ICONS[icon]));
+					link.addClass(LINK_CLASS);
 				}
 			});
 		});
+
+		// Views rendered before the plugin loaded get icons too.
+		this.app.workspace.onLayoutReady(() => this.rerenderReadingViews());
 	}
 
 	onunload() {
-		for (const child of [...this.renderedIcons]) {
-			child.unload();
+		// Live Preview widgets go away with the editor extension; rendered
+		// Markdown keeps its HTML, so strip the icons from it here.
+		for (const doc of this.openDocuments()) {
+			doc.querySelectorAll<HTMLElement>(`a.${LINK_CLASS}`).forEach((link) => {
+				link.querySelectorAll(`:scope > .${ICON_CLASS}`).forEach((icon) => icon.remove());
+				link.removeClass(LINK_CLASS);
+			});
 		}
 	}
 
@@ -75,5 +66,22 @@ export default class LinkLogosPlugin extends Plugin {
 			this.editorExtensions.push(livePreviewIcons);
 		}
 		this.app.workspace.updateOptions();
+	}
+
+	/** The main window plus any pop-out windows with open leaves. */
+	private openDocuments(): Set<Document> {
+		const docs = new Set<Document>([activeDocument]);
+		this.app.workspace.iterateAllLeaves((leaf) => {
+			docs.add(leaf.view.containerEl.doc);
+		});
+		return docs;
+	}
+
+	private rerenderReadingViews() {
+		this.app.workspace.iterateAllLeaves((leaf) => {
+			if (leaf.view instanceof MarkdownView) {
+				leaf.view.previewMode.rerender(true);
+			}
+		});
 	}
 }
