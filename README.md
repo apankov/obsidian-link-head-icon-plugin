@@ -39,7 +39,7 @@ Missing a site you use? [Open an issue](https://github.com/apankov/obsidian-link
 
 ## Install
 
-From Obsidian: **Settings → Community plugins → Browse**, search for **Link Logos**, then **Install** and **Enable**.
+From Obsidian: **Settings → Community plugins → Browse**, search for **Link Logos**, then **Install** and **Enable**. Or open the [plugin page](https://community.obsidian.md/plugins/link-logos).
 
 To try unreleased versions, add `apankov/obsidian-link-logos` in the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin.
 
