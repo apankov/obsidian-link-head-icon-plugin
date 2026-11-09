@@ -21,7 +21,7 @@ export default class LinkHeadIconPlugin extends Plugin {
 	onload() {
 		this.registerMarkdownPostProcessor((element, context) => {
 			element.querySelectorAll<HTMLElement>('a.external-link').forEach((link) => {
-				const icon = findIcon(link.innerText.trim());
+				const icon = findIcon(link.getAttribute('href') ?? '');
 				const src = icon && ICONS[icon];
 
 				if (src) {
