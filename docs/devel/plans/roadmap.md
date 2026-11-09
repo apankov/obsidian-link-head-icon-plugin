@@ -38,7 +38,8 @@ Plan: [rename-to-link-logos](rename-to-link-logos.md).
 - [x] Plugin id `link-logos`, display name "Link Logos", npm package and CSS classes renamed.
 - [x] GitHub repository renamed to `apankov/obsidian-link-logos`.
 - [x] README screenshots use absolute image URLs so they render on the catalog page.
-- [ ] Catalog entry follows the new id and name.
+- [x] New catalog entry: https://community.obsidian.md/plugins/link-logos
+- [ ] Archive the old `link-head-icon` catalog entry (owner).
 
 ## 0.4.0 — user-defined sites
 

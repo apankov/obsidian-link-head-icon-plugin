@@ -1,6 +1,6 @@
 # Rename the plugin to Link Logos
 
-Status: done in 0.2.2 (2026-11-09), except the catalog entry, which still uses the old id.
+Status: done in 0.2.2 (2026-11-09). The catalog got a new `link-logos` entry; the old `link-head-icon` entry is to be archived.
 
 ## Goal
 
